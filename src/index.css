@@ -6,81 +6,85 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 140 6% 10%;
+    /* Stealth-wealth palette: warm ivory foundations, deep forest darks, muted sage mids */
+    --background: 60 20% 98%;
+    --foreground: 150 8% 12%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 140 6% 10%;
+    --card: 60 15% 97%;
+    --card-foreground: 150 8% 12%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 140 6% 10%;
+    --popover: 60 20% 98%;
+    --popover-foreground: 150 8% 12%;
 
-    --primary: 145 95% 16%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 152 80% 18%;
+    --primary-foreground: 60 20% 98%;
 
-    --secondary: 140 18% 92%;
-    --secondary-foreground: 140 6% 10%;
+    --secondary: 143 14% 90%;
+    --secondary-foreground: 150 8% 12%;
 
-    --muted: 140 18% 92%;
-    --muted-foreground: 140 4% 45%;
+    --muted: 143 14% 90%;
+    --muted-foreground: 150 6% 46%;
 
-    --accent: 140 18% 92%;
-    --accent-foreground: 140 6% 10%;
+    --accent: 143 14% 90%;
+    --accent-foreground: 150 8% 12%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 147 14% 80%;
-    --input: 147 14% 80%;
-    --ring: 145 95% 16%;
+    --border: 148 12% 82%;
+    --input: 148 12% 82%;
+    --ring: 152 80% 18%;
 
     --radius: 0.5rem;
 
-    /* Custom brand tokens */
-    --midnight: 150 40% 7%;
-    --sage: 140 18% 92%;
-    --eucalyptus: 147 14% 80%;
-    --charcoal: 140 6% 10%;
-    --emerald: 145 95% 16%;
+    /* Brand tokens — "stealth wealth" greens */
+    --midnight: 156 36% 8%;
+    --sage: 143 16% 91%;
+    --eucalyptus: 148 12% 80%;
+    --charcoal: 150 8% 12%;
+    --emerald: 145 92% 18%;
 
-    --sidebar-background: 150 40% 7%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 145 95% 16%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 150 30% 12%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 150 20% 15%;
-    --sidebar-ring: 145 95% 16%;
+    /* Luxury accent — the logo's bright green, used ONLY for interactive pops */
+    --emerald-bright: 140 100% 26%;
+
+    --sidebar-background: 156 36% 8%;
+    --sidebar-foreground: 50 20% 92%;
+    --sidebar-primary: 152 80% 18%;
+    --sidebar-primary-foreground: 60 20% 98%;
+    --sidebar-accent: 156 28% 12%;
+    --sidebar-accent-foreground: 50 20% 92%;
+    --sidebar-border: 156 20% 15%;
+    --sidebar-ring: 152 80% 18%;
   }
 
   .dark {
-    --background: 150 40% 7%;
-    --foreground: 0 0% 95%;
-    --card: 150 30% 10%;
-    --card-foreground: 0 0% 95%;
-    --popover: 150 30% 10%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 145 95% 16%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 150 20% 15%;
-    --secondary-foreground: 0 0% 95%;
-    --muted: 150 20% 15%;
-    --muted-foreground: 140 10% 60%;
-    --accent: 150 20% 15%;
-    --accent-foreground: 0 0% 95%;
+    --background: 156 36% 8%;
+    --foreground: 50 20% 92%;
+    --card: 156 28% 11%;
+    --card-foreground: 50 20% 92%;
+    --popover: 156 28% 11%;
+    --popover-foreground: 50 20% 92%;
+    --primary: 152 80% 18%;
+    --primary-foreground: 60 20% 98%;
+    --secondary: 156 20% 15%;
+    --secondary-foreground: 50 20% 92%;
+    --muted: 156 20% 15%;
+    --muted-foreground: 150 8% 55%;
+    --accent: 156 20% 15%;
+    --accent-foreground: 50 20% 92%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 95%;
-    --border: 150 20% 15%;
-    --input: 150 20% 15%;
-    --ring: 145 95% 16%;
-    --sidebar-background: 150 40% 7%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 145 95% 16%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 150 30% 12%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 150 20% 15%;
-    --sidebar-ring: 145 95% 16%;
+    --destructive-foreground: 50 20% 92%;
+    --border: 156 20% 15%;
+    --input: 156 20% 15%;
+    --ring: 152 80% 18%;
+    --sidebar-background: 156 36% 8%;
+    --sidebar-foreground: 50 20% 92%;
+    --sidebar-primary: 152 80% 18%;
+    --sidebar-primary-foreground: 60 20% 98%;
+    --sidebar-accent: 156 28% 12%;
+    --sidebar-accent-foreground: 50 20% 92%;
+    --sidebar-border: 156 20% 15%;
+    --sidebar-ring: 152 80% 18%;
   }
 }
 
@@ -92,6 +96,8 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -120,4 +126,10 @@ html {
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Selection color */
+::selection {
+  background: hsl(152 80% 18% / 0.15);
+  color: hsl(150 8% 12%);
 }

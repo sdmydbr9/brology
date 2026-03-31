@@ -25,8 +25,8 @@ export function AchievementsSection() {
     <section id="achievements" className="bg-midnight py-24 md:py-32">
       <div className="max-w-5xl mx-auto px-6 md:px-12">
         <div className="text-center mb-16">
-          <span className="text-emerald font-sans text-xs tracking-[0.2em] uppercase font-medium">Results</span>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mt-3 mb-4">
+          <span className="text-emerald font-sans text-[10px] tracking-[0.25em] uppercase font-medium">Results</span>
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-white/90 mt-3 mb-4">
             Our achievements
           </h2>
         </div>
@@ -36,25 +36,25 @@ export function AchievementsSection() {
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <p className="text-4xl md:text-5xl font-serif font-bold text-emerald">{stat.value}</p>
-              <p className="text-white/50 font-sans text-xs mt-2 uppercase tracking-wider">{stat.label}</p>
+              <p className="text-white/30 font-sans text-[10px] mt-2 uppercase tracking-[0.15em]">{stat.label}</p>
             </div>
           ))}
         </div>
 
         {/* Testimonial Carousel */}
         <div className="relative max-w-2xl mx-auto">
-          <Quote className="w-10 h-10 text-emerald/30 mx-auto mb-6" />
+          <Quote className="w-10 h-10 text-emerald/20 mx-auto mb-6" />
           
           <div className="text-center min-h-[180px] flex flex-col items-center justify-center">
-            <p className="text-white/80 font-sans text-lg md:text-xl leading-relaxed mb-6 italic">
+            <p className="text-white/50 font-sans text-lg md:text-xl leading-relaxed mb-6 italic">
               "{testimonials[current].text}"
             </p>
-            <p className="text-white font-serif font-semibold">{testimonials[current].name}</p>
+            <p className="text-white/80 font-serif font-semibold">{testimonials[current].name}</p>
             <p className="text-emerald font-sans text-sm mt-1">{testimonials[current].score}</p>
           </div>
 
           <div className="flex items-center justify-center gap-4 mt-8">
-            <button onClick={prev} className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-colors">
+            <button onClick={prev} className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/30 hover:text-white/60 hover:border-white/20 transition-colors">
               <ChevronLeft className="w-5 h-5" />
             </button>
             <div className="flex gap-2">
@@ -62,13 +62,13 @@ export function AchievementsSection() {
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    i === current ? "bg-emerald w-6" : "bg-white/20"
+                  className={`h-1.5 rounded-full transition-all duration-500 ${
+                    i === current ? "bg-emerald w-6" : "bg-white/10 w-1.5"
                   }`}
                 />
               ))}
             </div>
-            <button onClick={next} className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-colors">
+            <button onClick={next} className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/30 hover:text-white/60 hover:border-white/20 transition-colors">
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>

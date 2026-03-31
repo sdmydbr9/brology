@@ -1,4 +1,4 @@
-import { Leaf } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const links = [
   { label: "Home", href: "#hero" },
@@ -16,24 +16,21 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Leaf className="w-5 h-5 text-emerald" />
-              <h3 className="text-xl font-serif font-bold text-white">Brology</h3>
-            </div>
-            <p className="text-white/50 font-sans text-sm leading-relaxed">
+            <img src={logo} alt="Brology Classes" className="h-10 w-auto object-contain mb-4 opacity-80" />
+            <p className="text-white/30 font-sans text-sm leading-relaxed">
               Premium biology coaching with a friendly vibe. Building future doctors and scientists, one batch at a time.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-sans font-semibold text-sm mb-4 uppercase tracking-wider">Quick Links</h4>
+            <h4 className="text-white/60 font-sans font-semibold text-[10px] mb-4 uppercase tracking-[0.2em]">Quick Links</h4>
             <nav className="space-y-2">
               {links.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="block text-white/50 font-sans text-sm hover:text-emerald transition-colors"
+                  className="block text-white/30 font-sans text-sm hover:text-emerald transition-colors duration-300"
                 >
                   {link.label}
                 </a>
@@ -43,18 +40,18 @@ export function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-white font-sans font-semibold text-sm mb-4 uppercase tracking-wider">Reach Us</h4>
-            <div className="space-y-2 text-white/50 font-sans text-sm">
+            <h4 className="text-white/60 font-sans font-semibold text-[10px] mb-4 uppercase tracking-[0.2em]">Reach Us</h4>
+            <div className="space-y-2 text-white/30 font-sans text-sm">
               <p>123 Science Avenue, Education District</p>
               <p>Mumbai, Maharashtra 400001</p>
-              <p className="text-emerald">+91 98765 43210</p>
-              <p className="text-emerald">hello@brologyclasses.com</p>
+              <p className="text-emerald/70">+91 98765 43210</p>
+              <p className="text-emerald/70">hello@brologyclasses.com</p>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 text-center">
-          <p className="text-white/30 font-sans text-xs">
+        <div className="border-t border-white/[0.06] pt-8 text-center">
+          <p className="text-white/20 font-sans text-xs">
             © {new Date().getFullYear()} Brology Classes. All rights reserved.
           </p>
         </div>
