@@ -2,7 +2,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import studyRoomImg from "@/assets/study-room.jpg";
+import heroAcademyImg from "@/assets/hero-academy.jpg";
+import { TornEdgeDivider } from "@/components/TornEdgeDivider";
 import MeetFounder from "@/components/sections/about/MeetFounder";
 import TestimonialStack from "@/components/sections/about/TestimonialStack";
 import VerticalTimeline from "@/components/sections/about/VerticalTimeline";
@@ -15,10 +16,7 @@ export function AboutSection() {
   const heroSubRef = useRef<HTMLParagraphElement>(null);
   const heroLineRef = useRef<HTMLDivElement>(null);
   const heroCueRef = useRef<HTMLParagraphElement>(null);
-  const scene2Ref = useRef<HTMLDivElement>(null);
   const scene2TextRef = useRef<HTMLDivElement>(null);
-  const scene2ImageWrapRef = useRef<HTMLDivElement>(null);
-  const scene2ImageRef = useRef<HTMLImageElement>(null);
   const scene5Ref = useRef<HTMLElement>(null);
   const scene5ContentRef = useRef<HTMLDivElement>(null);
   const progressFillRef = useRef<HTMLDivElement>(null);
@@ -27,8 +25,8 @@ export function AboutSection() {
     const container = containerRef.current;
     if (!container) return;
 
-    const media = gsap.matchMedia();
     const ctx = gsap.context(() => {
+      // Scroll Progress Indicator
       if (progressFillRef.current) {
         gsap.to(progressFillRef.current, {
           height: "100%",
@@ -42,6 +40,7 @@ export function AboutSection() {
         });
       }
 
+      // Hero Entrance Animation
       const heroTimeline = gsap.timeline();
 
       if (heroTitleRef.current) {
@@ -79,6 +78,7 @@ export function AboutSection() {
         );
       }
 
+      // Scene 1 Text Reveal
       if (scene2TextRef.current) {
         gsap.fromTo(
           scene2TextRef.current,
@@ -97,12 +97,13 @@ export function AboutSection() {
         );
       }
 
+      // Scene 5 (Final CTA) Background Transition
       if (scene5Ref.current) {
         gsap.fromTo(
           scene5Ref.current,
-          { backgroundColor: "hsl(60, 14%, 97%)" },
+          { backgroundColor: "hsl(60, 14%, 97%)" }, // Adjust to match your ivory theme
           {
-            backgroundColor: "hsl(155, 32%, 8%)",
+            backgroundColor: "hsl(155, 32%, 8%)", // Adjust to match your midnight/dark theme
             scrollTrigger: {
               trigger: scene5Ref.current,
               start: "top 80%",
@@ -113,6 +114,7 @@ export function AboutSection() {
         );
       }
 
+      // Scene 5 (Final CTA) Content Reveal
       if (scene5ContentRef.current) {
         gsap.fromTo(
           scene5ContentRef.current,
@@ -131,65 +133,7 @@ export function AboutSection() {
       }
     }, container);
 
-    media.add("(min-width: 1024px)", () => {
-      if (!scene2Ref.current || !scene2ImageWrapRef.current || !scene2ImageRef.current) {
-        return undefined;
-      }
-
-      const pinTrigger = ScrollTrigger.create({
-        trigger: scene2Ref.current,
-        start: "top top",
-        end: "bottom bottom",
-        pin: scene2ImageWrapRef.current,
-        pinSpacing: false,
-      });
-
-      const imageTween = gsap.to(scene2ImageRef.current, {
-        scale: 1.15,
-        ease: "none",
-        scrollTrigger: {
-          trigger: scene2Ref.current,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 0.5,
-        },
-      });
-
-      return () => {
-        pinTrigger.kill();
-        imageTween.scrollTrigger?.kill();
-        imageTween.kill();
-      };
-    });
-
-    media.add("(max-width: 1023px)", () => {
-      if (!scene2Ref.current || !scene2ImageRef.current) {
-        return undefined;
-      }
-
-      const imageTween = gsap.fromTo(
-        scene2ImageRef.current,
-        { scale: 1.05 },
-        {
-          scale: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: scene2Ref.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.5,
-          },
-        },
-      );
-
-      return () => {
-        imageTween.scrollTrigger?.kill();
-        imageTween.kill();
-      };
-    });
-
     return () => {
-      media.revert();
       ctx.revert();
     };
   }, []);
@@ -200,10 +144,13 @@ export function AboutSection() {
 
   return (
     <section id="about" ref={containerRef} className="relative overflow-x-hidden bg-background">
-      <div className="scroll-progress-track hidden lg:block">
-        <div ref={progressFillRef} className="scroll-progress-fill" style={{ height: 0 }} />
+      
+      {/* Scroll Progress Bar */}
+      <div className="scroll-progress-track hidden lg:block absolute right-0 top-0 bottom-0 w-1 bg-muted z-50">
+        <div ref={progressFillRef} className="scroll-progress-fill w-full bg-primary" style={{ height: 0 }} />
       </div>
 
+      {/* Hero Section */}
       <div className="relative flex min-h-screen flex-col items-center justify-center bg-hero-bg px-6 py-24 sm:px-10">
         <h2
           ref={heroTitleRef}
@@ -226,61 +173,74 @@ export function AboutSection() {
         </p>
       </div>
 
-      <div ref={scene2Ref} className="relative min-h-[200vh] bg-background">
-        <div className="flex min-h-screen flex-col lg:flex-row">
-          <div className="flex flex-1 items-center px-8 py-20 sm:px-16 lg:px-24 lg:py-32">
-            <div ref={scene2TextRef} className="max-w-lg">
-              <p className="mb-6 font-sans text-xs uppercase tracking-[0.25em] text-muted-foreground">
-                Where It All Began
-              </p>
-              <h3 className="mb-8 font-serif text-3xl font-bold leading-tight text-foreground sm:text-4xl lg:text-5xl">
-                A small room.
-                <br />
-                A big belief.
-              </h3>
-              <p className="font-sans text-lg leading-relaxed text-foreground/80">
-                In 2021, biology coaching felt like a factory assembly line. We started Brology in a
-                small room in Agartala with just a handful of students, driven by a single belief:
-                Science should not be intimidating; it should be unforgettable.
-              </p>
-            </div>
+      {/* =========================================================
+          THE CURTAIN REVEAL WRAPPER
+          This div holds both the sticky background and the scrolling content.
+          ========================================================= */}
+      <div className="relative w-full">
+        
+        {/* Layer 1: The Sticky Background Image (-z-10 ensures it stays in back) */}
+        <div className="sticky top-0 -z-10 h-screen w-full overflow-hidden">
+          <img
+            src={heroAcademyImg}
+            alt="Academy students walking through grand collegiate grounds"
+            width={1920}
+            height={1080}
+            className="h-full w-full object-cover"
+          />
+        </div>
+
+        {/* Layer 2: The Scrolling Content (The Curtain) */}
+        <section className="relative z-10 bg-[#f0e8d8] pt-32 pb-12">
+          
+          {/* The Torn Edge Divider 
+              Positioned absolutely to stick out exactly 99% of its height 
+              ABOVE this section, covering the bottom of the sticky image. 
+          */}
+          <div className="absolute left-0 top-0 w-full -translate-y-[99%]">
+            <TornEdgeDivider className="w-full text-[#f0e8d8] fill-current" />
           </div>
+
+          {/* Scene 1 Intro */}
           <div
-            ref={scene2ImageWrapRef}
-            className="flex-1 overflow-hidden lg:sticky lg:top-0 lg:h-screen"
+            ref={scene2TextRef}
+            className="flex flex-col items-center justify-center px-6 pb-24"
           >
-            <img
-              ref={scene2ImageRef}
-              src={studyRoomImg}
-              alt="Cozy sunlit study room where Brology began"
-              className="h-[60vh] w-full object-cover lg:h-full"
-            />
+            <p className="mb-6 font-sans text-sm uppercase tracking-[0.3em] text-foreground/50 md:text-base">
+              Scene 1
+            </p>
+            <h3 className="max-w-4xl text-center font-serif text-4xl italic leading-tight text-foreground md:text-6xl lg:text-7xl">
+              Where it all began
+            </h3>
           </div>
-        </div>
-      </div>
 
-      <VerticalTimeline />
-      <MeetFounder />
-      <TestimonialStack />
+          {/* Core Content Components */}
+          <VerticalTimeline />
+          <MeetFounder />
+          <TestimonialStack />
 
-      <section
-        ref={scene5Ref}
-        className="relative flex min-h-screen flex-col items-center justify-center px-8 py-24"
-      >
-        <div ref={scene5ContentRef} className="flex max-w-3xl flex-col items-center text-center">
-          <h3 className="mb-10 font-serif text-3xl font-bold leading-tight text-primary-foreground sm:text-5xl lg:text-6xl">
-            It takes relentless passion to make biology this simple. This is the crew you want
-            guiding your journey.
-          </h3>
-          <button
-            type="button"
-            className="cta-pulse rounded-full bg-primary px-12 py-5 font-sans text-lg font-semibold text-primary-foreground transition-colors duration-300 hover:bg-accent"
-            onClick={scrollToMentors}
+          {/* Final Scene (CTA) */}
+          <section
+            ref={scene5Ref}
+            className="relative flex min-h-[80vh] flex-col items-center justify-center px-8 py-24"
           >
-            Meet Our Mentors
-          </button>
-        </div>
-      </section>
+            <div ref={scene5ContentRef} className="flex max-w-3xl flex-col items-center text-center">
+              <h3 className="mb-10 font-serif text-3xl font-bold leading-tight text-primary-foreground sm:text-5xl lg:text-6xl">
+                It takes relentless passion to make biology this simple. This is the crew you want
+                guiding your journey.
+              </h3>
+              <button
+                type="button"
+                className="cta-pulse rounded-full bg-primary px-12 py-5 font-sans text-lg font-semibold text-primary-foreground transition-colors duration-300 hover:bg-accent"
+                onClick={scrollToMentors}
+              >
+                Meet Our Mentors
+              </button>
+            </div>
+          </section>
+
+        </section>
+      </div>
     </section>
   );
 }
