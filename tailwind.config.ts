@@ -57,6 +57,13 @@ export default {
         charcoal: "hsl(var(--charcoal))",
         emerald: "hsl(var(--emerald))",
         "emerald-bright": "hsl(var(--emerald-bright))",
+        hero: {
+          bg: "hsl(var(--hero-bg))",
+          text: "hsl(var(--hero-text))",
+          subtext: "hsl(var(--hero-subtext))",
+          accent: "hsl(var(--hero-accent))",
+          line: "hsl(var(--hero-line))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

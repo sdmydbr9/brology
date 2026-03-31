@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -43,6 +43,11 @@
     --eucalyptus: 148 12% 80%;
     --charcoal: 150 8% 12%;
     --emerald: 145 92% 18%;
+    --hero-bg: 27 56% 97%;
+    --hero-text: 16 13% 16%;
+    --hero-subtext: 16 9% 39%;
+    --hero-accent: 16 33% 49%;
+    --hero-line: 24 31% 85%;
 
     /* Luxury accent — the logo's bright green, used ONLY for interactive pops */
     --emerald-bright: 140 100% 26%;
@@ -85,6 +90,11 @@
     --sidebar-accent-foreground: 50 20% 92%;
     --sidebar-border: 156 20% 15%;
     --sidebar-ring: 152 80% 18%;
+    --hero-bg: 27 56% 97%;
+    --hero-text: 16 13% 16%;
+    --hero-subtext: 16 9% 39%;
+    --hero-accent: 16 33% 49%;
+    --hero-line: 24 31% 85%;
   }
 }
 
@@ -112,6 +122,9 @@
   .font-sans {
     font-family: 'Inter', sans-serif;
   }
+  .font-script {
+    font-family: 'Allura', cursive;
+  }
 }
 
 /* Smooth scrolling */
@@ -132,4 +145,59 @@ html {
 ::selection {
   background: hsl(152 80% 18% / 0.15);
   color: hsl(150 8% 12%);
+}
+
+/* About story helpers */
+.scroll-progress-track {
+  position: fixed;
+  left: 1.5rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: hsl(var(--muted));
+  z-index: 40;
+}
+
+.scroll-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: hsl(var(--primary));
+  transform-origin: top;
+}
+
+@media (min-width: 1024px) {
+  .scroll-progress-track {
+    left: calc(220px + 2rem);
+  }
+}
+
+@keyframes cta-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 hsla(148, 90%, 18%, 0.4); }
+  50% { box-shadow: 0 0 0 16px hsla(148, 90%, 18%, 0); }
+}
+
+.cta-pulse {
+  animation: cta-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes polaroid-sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+.polaroid-sway {
+  animation: polaroid-sway 6s ease-in-out infinite;
+}
+
+@media (max-width: 767px) {
+  .polaroid-sway {
+    animation: none;
+  }
+}
+
+.tl-image-reveal,
+.tl-image-media {
+  will-change: clip-path, transform;
 }
