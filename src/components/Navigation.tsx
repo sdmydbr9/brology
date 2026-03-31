@@ -39,7 +39,7 @@ export function DesktopSidebar() {
     <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-[220px] bg-midnight flex-col z-50">
       {/* Logo */}
       <div className="p-5 pt-7 flex justify-center">
-        <img src={logo} alt="Brology Classes" className="h-14 w-auto object-contain" />
+        <img src={logo} alt="Brology Classes" className="h-20 w-auto object-contain" />
       </div>
 
       {/* Divider */}

@@ -1,5 +1,4 @@
 import { ArrowRight } from "lucide-react";
-import logo from "@/assets/logo.png";
 
 export function HeroSection() {
   return (
@@ -16,11 +15,6 @@ export function HeroSection() {
       </div>
 
       <div className="relative z-10 w-full max-w-5xl mx-auto px-6 md:px-12 py-20">
-        {/* Logo badge */}
-        <div className="mb-10">
-          <img src={logo} alt="Brology Classes" className="h-12 w-auto object-contain opacity-90" />
-        </div>
-
         <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-serif font-bold text-white/95 leading-[1.05] mb-8 max-w-4xl">
           Science with a<br />
           <span className="italic text-emerald">friendly</span> vibe
