@@ -28,7 +28,7 @@ export function FeaturesSection() {
     <section id="features" className="bg-sage py-24 md:py-32">
       <div className="max-w-5xl mx-auto px-6 md:px-12">
         <div className="text-center mb-16">
-          <span className="text-emerald font-sans text-xs tracking-[0.2em] uppercase font-medium">Why Brology</span>
+          <span className="text-emerald font-sans text-[10px] tracking-[0.25em] uppercase font-medium">Why Brology</span>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-charcoal mt-3 mb-4">
             What we provide
           </h2>
@@ -41,9 +41,9 @@ export function FeaturesSection() {
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="group bg-background border border-eucalyptus rounded-2xl p-8 hover:shadow-lg transition-all duration-300 hover:border-emerald/30"
+              className="group bg-background border border-eucalyptus/60 rounded-2xl p-8 hover:shadow-md transition-all duration-500 hover:border-emerald/20"
             >
-              <div className="w-12 h-12 rounded-xl bg-emerald/10 flex items-center justify-center mb-5 group-hover:bg-emerald/20 transition-colors">
+              <div className="w-12 h-12 rounded-xl bg-emerald/[0.06] flex items-center justify-center mb-5 group-hover:bg-emerald/[0.1] transition-colors duration-500">
                 <feature.icon className="w-6 h-6 text-emerald" />
               </div>
               <h3 className="font-serif font-semibold text-charcoal text-xl mb-3">{feature.title}</h3>
