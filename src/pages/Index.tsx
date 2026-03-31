@@ -1,16 +1,34 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { DesktopSidebar, MobileNav } from "@/components/Navigation";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { MentorsSection } from "@/components/sections/MentorsSection";
+import { FeaturesSection } from "@/components/sections/FeaturesSection";
+import { CoursesSection } from "@/components/sections/CoursesSection";
+import { FeesSection } from "@/components/sections/FeesSection";
+import { AchievementsSection } from "@/components/sections/AchievementsSection";
+import { ContactSection } from "@/components/sections/ContactSection";
+import { Footer } from "@/components/sections/Footer";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen">
+      <DesktopSidebar />
+      <MobileNav />
+
+      {/* Main content - offset on desktop for sidebar */}
+      <main className="lg:ml-[220px]">
+        <HeroSection />
+        <AboutSection />
+        <MentorsSection />
+        <FeaturesSection />
+        <CoursesSection />
+        <FeesSection />
+        <AchievementsSection />
+        <ContactSection />
+        <Footer />
+      </main>
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
