@@ -1,5 +1,6 @@
 import { DesktopSidebar, MobileNav } from "@/components/Navigation";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { DnaHelixSection } from "@/components/sections/DnaHelixSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { MentorsSection } from "@/components/sections/MentorsSection";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
@@ -18,6 +19,7 @@ const Index = () => {
       {/* Main content - offset on desktop for sidebar */}
       <main className="lg:ml-[220px]">
         <HeroSection />
+        <DnaHelixSection />
         <AboutSection />
         <MentorsSection />
         <FeaturesSection />

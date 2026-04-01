@@ -1,11 +1,16 @@
-import tornPaper from "@/assets/torn-paper-strip.png";
+import type { ComponentPropsWithoutRef } from "react";
 
-export const TornEdgeDivider = () => (
-  <div className="w-full pointer-events-none">
+import tornPaper from "@/assets/torn-paper-strip.png";
+import { cn } from "@/lib/utils";
+
+type TornEdgeDividerProps = ComponentPropsWithoutRef<"div">;
+
+export const TornEdgeDivider = ({ className, ...props }: TornEdgeDividerProps) => (
+  <div className={cn("pointer-events-none w-full", className)} {...props}>
     <img
       src={tornPaper}
       alt=""
-      className="block w-full h-auto"
+      className="block h-auto w-full"
       loading="lazy"
       width={1920}
       height={512}

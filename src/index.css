@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Caveat:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -43,6 +43,7 @@
     --eucalyptus: 148 12% 80%;
     --charcoal: 150 8% 12%;
     --emerald: 145 92% 18%;
+    --emerald-brand: 145 92% 18%;
     --hero-bg: 27 56% 97%;
     --hero-text: 16 13% 16%;
     --hero-subtext: 16 9% 39%;
@@ -82,6 +83,7 @@
     --border: 156 20% 15%;
     --input: 156 20% 15%;
     --ring: 152 80% 18%;
+    --emerald-brand: 145 92% 18%;
     --sidebar-background: 156 36% 8%;
     --sidebar-foreground: 50 20% 92%;
     --sidebar-primary: 152 80% 18%;
@@ -145,32 +147,6 @@ html {
 ::selection {
   background: hsl(152 80% 18% / 0.15);
   color: hsl(150 8% 12%);
-}
-
-/* About story helpers */
-.scroll-progress-track {
-  position: fixed;
-  left: 1.5rem;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: hsl(var(--muted));
-  z-index: 40;
-}
-
-.scroll-progress-fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: hsl(var(--primary));
-  transform-origin: top;
-}
-
-@media (min-width: 1024px) {
-  .scroll-progress-track {
-    left: calc(220px + 2rem);
-  }
 }
 
 @keyframes cta-pulse {

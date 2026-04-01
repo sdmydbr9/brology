@@ -55,8 +55,11 @@ export default {
         sage: "hsl(var(--sage))",
         eucalyptus: "hsl(var(--eucalyptus))",
         charcoal: "hsl(var(--charcoal))",
-        emerald: "hsl(var(--emerald))",
-        "emerald-bright": "hsl(var(--emerald-bright))",
+        emerald: {
+          DEFAULT: "hsl(var(--emerald))",
+          brand: "hsl(var(--emerald-brand))",
+          bright: "hsl(var(--emerald-bright))",
+        },
         hero: {
           bg: "hsl(var(--hero-bg))",
           text: "hsl(var(--hero-text))",

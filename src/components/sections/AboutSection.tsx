@@ -3,15 +3,19 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import heroAcademyImg from "@/assets/hero-academy.jpg";
-import { TornEdgeDivider } from "@/components/TornEdgeDivider";
 import MeetFounder from "@/components/sections/about/MeetFounder";
-import TestimonialStack from "@/components/sections/about/TestimonialStack";
+import TestimonialSection from "@/components/sections/about/TestimonialSection";
 import VerticalTimeline from "@/components/sections/about/VerticalTimeline";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function AboutSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const heroSectionRef = useRef<HTMLDivElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
+  const academyImageStageRef = useRef<HTMLDivElement>(null);
+  const academyImageRef = useRef<HTMLImageElement>(null);
+  const academyImageOverlayRef = useRef<HTMLDivElement>(null);
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
   const heroSubRef = useRef<HTMLParagraphElement>(null);
   const heroLineRef = useRef<HTMLDivElement>(null);
@@ -19,27 +23,12 @@ export function AboutSection() {
   const scene2TextRef = useRef<HTMLDivElement>(null);
   const scene5Ref = useRef<HTMLElement>(null);
   const scene5ContentRef = useRef<HTMLDivElement>(null);
-  const progressFillRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
     const ctx = gsap.context(() => {
-      // Scroll Progress Indicator
-      if (progressFillRef.current) {
-        gsap.to(progressFillRef.current, {
-          height: "100%",
-          ease: "none",
-          scrollTrigger: {
-            trigger: container,
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 0.3,
-          },
-        });
-      }
-
       // Hero Entrance Animation
       const heroTimeline = gsap.timeline();
 
@@ -51,31 +40,153 @@ export function AboutSection() {
         );
       }
 
-      if (heroSubRef.current) {
-        heroTimeline.fromTo(
-          heroSubRef.current,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
-          "-=0.5",
-        );
+      if (heroSectionRef.current && heroContentRef.current) {
+        if (heroSubRef.current) {
+          gsap.set(heroSubRef.current, { opacity: 0, y: 56 });
+        }
+
+        if (heroLineRef.current) {
+          gsap.set(heroLineRef.current, {
+            opacity: 0,
+            y: 24,
+            scaleX: 0,
+            transformOrigin: "center center",
+          });
+        }
+
+        if (heroCueRef.current) {
+          gsap.set(heroCueRef.current, { opacity: 0, y: 52 });
+        }
+
+        gsap.to(heroContentRef.current, {
+          y: () => {
+            if (window.innerWidth < 640) return -88;
+            if (window.innerWidth < 1024) return -132;
+            return -176;
+          },
+          ease: "none",
+          scrollTrigger: {
+            trigger: heroSectionRef.current,
+            start: "top bottom",
+            end: "top 42%",
+            scrub: 0.9,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        const heroDetailsTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: heroSectionRef.current,
+            start: "top 28%",
+            end: "top 14%",
+            scrub: 0.9,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        if (heroSubRef.current) {
+          heroDetailsTimeline.to(
+            heroSubRef.current,
+            {
+              opacity: 1,
+              y: 0,
+              ease: "power2.out",
+            },
+            0,
+          );
+        }
+
+        if (heroLineRef.current) {
+          heroDetailsTimeline.to(
+            heroLineRef.current,
+            {
+              opacity: 1,
+              y: 0,
+              scaleX: 1,
+              ease: "power2.out",
+            },
+            0.16,
+          );
+        }
+
+        if (heroCueRef.current) {
+          gsap.to(heroCueRef.current, {
+            opacity: 1,
+            y: 0,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: heroSectionRef.current,
+              start: "top 4%",
+              end: "top -12%",
+              scrub: 0.9,
+              invalidateOnRefresh: true,
+            },
+          });
+        }
+
+        const heroScrollTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: heroSectionRef.current,
+            start: "top -18%",
+            end: "bottom top",
+            scrub: 0.9,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        heroScrollTimeline
+          .to(
+            heroContentRef.current,
+            {
+              opacity: 0,
+              scale: 0.96,
+              filter: "blur(8px)",
+              ease: "none",
+            },
+            0.5,
+          );
       }
 
-      if (heroLineRef.current) {
-        heroTimeline.fromTo(
-          heroLineRef.current,
-          { scaleX: 0 },
-          { scaleX: 1, duration: 0.6, ease: "power2.out" },
-          "-=0.3",
-        );
-      }
+      if (academyImageStageRef.current && academyImageRef.current) {
+        gsap.set(academyImageRef.current, {
+          opacity: 0,
+          yPercent: 16,
+          scale: 1.06,
+          filter: "blur(10px)",
+        });
 
-      if (heroCueRef.current) {
-        heroTimeline.fromTo(
-          heroCueRef.current,
-          { opacity: 0 },
-          { opacity: 1, duration: 0.8, ease: "power2.out" },
-          "-=0.2",
-        );
+        if (academyImageOverlayRef.current) {
+          gsap.set(academyImageOverlayRef.current, { opacity: 0 });
+        }
+
+        const academyImageTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: academyImageStageRef.current,
+            start: "top bottom",
+            end: "top 22%",
+            scrub: 1.1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        academyImageTimeline.to(academyImageRef.current, {
+          opacity: 1,
+          yPercent: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          ease: "none",
+        });
+
+        if (academyImageOverlayRef.current) {
+          academyImageTimeline.to(
+            academyImageOverlayRef.current,
+            {
+              opacity: 1,
+              ease: "none",
+            },
+            0,
+          );
+        }
       }
 
       // Scene 1 Text Reveal
@@ -142,35 +253,57 @@ export function AboutSection() {
     document.getElementById("mentors")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  return (
-    <section id="about" ref={containerRef} className="relative overflow-x-hidden bg-background">
-      
-      {/* Scroll Progress Bar */}
-      <div className="scroll-progress-track hidden lg:block absolute right-0 top-0 bottom-0 w-1 bg-muted z-50">
-        <div ref={progressFillRef} className="scroll-progress-fill w-full bg-primary" style={{ height: 0 }} />
-      </div>
+  const academyHeroOverlayStyle = {
+    background:
+      "linear-gradient(180deg, rgba(15, 10, 5, 0.12) 0%, rgba(15, 10, 5, 0.12) 48%, rgba(15, 10, 5, 0.48) 100%), radial-gradient(circle at top left, rgba(255, 221, 166, 0.18), transparent 32%)",
+  };
 
+  const paperRevealStyle = {
+    backgroundColor: "hsl(var(--hero-bg))",
+  };
+
+  const introRuleStyle = {
+    background: "linear-gradient(90deg, transparent 0%, rgba(33, 23, 15, 0.42) 50%, transparent 100%)",
+  };
+
+  return (
+    <section id="about" ref={containerRef} className="relative overflow-x-hidden bg-hero-bg">
       {/* Hero Section */}
-      <div className="relative flex min-h-screen flex-col items-center justify-center bg-hero-bg px-6 py-24 sm:px-10">
-        <h2
-          ref={heroTitleRef}
-          className="font-serif text-center text-5xl font-bold leading-none tracking-tight text-hero-text sm:text-7xl md:text-8xl lg:text-9xl"
-        >
-          The Brology Story
-        </h2>
-        <p
-          ref={heroSubRef}
-          className="mt-8 max-w-xl text-center font-sans text-lg leading-relaxed text-hero-subtext sm:text-xl"
-        >
-          Based on a true story of curiosity, clarity, and small batches.
-        </p>
-        <div ref={heroLineRef} className="mt-10 h-px w-24 origin-left bg-hero-line" />
-        <p
-          ref={heroCueRef}
-          className="mt-16 font-sans text-xs uppercase tracking-[0.3em] text-hero-accent"
-        >
-          Scroll Down
-        </p>
+      <div
+        ref={heroSectionRef}
+        className="relative z-20 h-[170svh]"
+      >
+        <div className="sticky top-0 h-screen min-h-[100svh] overflow-hidden bg-hero-bg isolate">
+          <div className="relative z-30 flex h-full items-start justify-center overflow-hidden px-6 pb-24 pt-[clamp(9rem,22vh,15rem)] sm:px-10">
+            <div
+              ref={heroContentRef}
+              className="flex w-full flex-col items-center will-change-transform"
+            >
+              <h2
+                ref={heroTitleRef}
+                className="font-serif text-center text-5xl font-bold leading-none tracking-tight text-hero-text sm:text-7xl md:text-8xl lg:text-9xl"
+              >
+                The Brology Story
+              </h2>
+              <p
+              ref={heroSubRef}
+              className="mt-8 max-w-xl text-center font-sans text-lg leading-relaxed text-hero-subtext will-change-transform sm:text-xl"
+            >
+              Based on a true story of curiosity, clarity, and small batches.
+            </p>
+              <div
+                ref={heroLineRef}
+                className="mt-10 h-px w-24 bg-hero-line will-change-transform"
+              />
+              <p
+                ref={heroCueRef}
+                className="mt-16 font-sans text-xs uppercase tracking-[0.3em] text-hero-accent will-change-transform"
+              >
+                Scroll Down
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* =========================================================
@@ -179,45 +312,50 @@ export function AboutSection() {
           ========================================================= */}
       <div className="relative w-full">
         
-        {/* Layer 1: The Sticky Background Image (-z-10 ensures it stays in back) */}
-        <div className="sticky top-0 -z-10 h-screen w-full overflow-hidden">
+        {/* Layer 1: The Sticky Background Image */}
+        <div
+          ref={academyImageStageRef}
+          className="relative sticky top-0 z-0 h-screen min-h-[100svh] w-full overflow-hidden bg-hero-bg"
+        >
           <img
+            ref={academyImageRef}
             src={heroAcademyImg}
             alt="Academy students walking through grand collegiate grounds"
             width={1920}
             height={1080}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover will-change-transform"
+          />
+          <div
+            ref={academyImageOverlayRef}
+            className="pointer-events-none absolute inset-0"
+            style={academyHeroOverlayStyle}
           />
         </div>
 
         {/* Layer 2: The Scrolling Content (The Curtain) */}
-        <section className="relative z-10 bg-[#f0e8d8] pt-32 pb-12">
-          
-          {/* The Torn Edge Divider 
-              Positioned absolutely to stick out exactly 99% of its height 
-              ABOVE this section, covering the bottom of the sticky image. 
-          */}
-          <div className="absolute left-0 top-0 w-full -translate-y-[99%]">
-            <TornEdgeDivider className="w-full text-[#f0e8d8] fill-current" />
-          </div>
+        <section className="-mt-px relative z-10 overflow-visible pb-12" style={paperRevealStyle}>
 
           {/* Scene 1 Intro */}
           <div
             ref={scene2TextRef}
-            className="flex flex-col items-center justify-center px-6 pb-24"
+            className="relative z-[2] flex min-h-screen min-h-[100svh] flex-col items-center justify-center px-6 pb-24 pt-[clamp(5.5rem,10vw,9rem)] text-center"
           >
-            <p className="mb-6 font-sans text-sm uppercase tracking-[0.3em] text-foreground/50 md:text-base">
+            <p className="mb-6 font-sans text-xs uppercase tracking-[0.3em] text-foreground/55 sm:text-[0.95rem]">
               Scene 1
             </p>
-            <h3 className="max-w-4xl text-center font-serif text-4xl italic leading-tight text-foreground md:text-6xl lg:text-7xl">
+            <h3
+              className="max-w-[10ch] font-serif text-5xl italic font-medium leading-[0.96] text-[#21170f] sm:text-7xl lg:text-[6rem]"
+              style={{ textWrap: "balance" }}
+            >
               Where it all began
             </h3>
+            <div className="mt-7 h-px w-[min(6rem,30vw)]" style={introRuleStyle} aria-hidden="true" />
           </div>
 
           {/* Core Content Components */}
           <VerticalTimeline />
           <MeetFounder />
-          <TestimonialStack />
+          <TestimonialSection />
 
           {/* Final Scene (CTA) */}
           <section
